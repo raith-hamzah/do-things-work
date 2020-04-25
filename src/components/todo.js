@@ -13,7 +13,8 @@ function Todo({ description, name, index, dispatch, fixed, id, complete }) {
     setDisabled(!disabled)
   }
 
-  function handleDelete() {
+  function handleDelete(event) {
+    event.preventDefault()
     dispatch({ type: DELETE_TODO, payload: { id, index } })
   }
 
