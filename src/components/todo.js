@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react"
 import "./todo.css"
 import { SAVE_TODO, DELETE_TODO } from "./todoList"
 
-function Todo({ description, name, index, dispatch, fixed, id }) {
+function Todo({ description, name, index, dispatch, fixed, id, complete }) {
   const [disabled, setDisabled] = useState(true)
   const titleInput = useRef(null)
   const editButton = useRef(null)
@@ -46,41 +46,104 @@ function Todo({ description, name, index, dispatch, fixed, id }) {
           onChange={e => {
             dispatch({
               type: SAVE_TODO,
-              payload: { name: e.target.value, description, fixed, index, id },
+              payload: {
+                name: e.target.value,
+                description,
+                fixed,
+                index,
+                id,
+                complete,
+              },
             })
           }}
         />
         <textarea
-          className={`todo__description ${
-            disabled && fixed ? "todo--fixed" : ""
-          }`}
+          className={`todo__input ${disabled && fixed ? "todo--fixed" : ""}`}
           value={description}
           placeholder='how is it broken?'
           disabled={disabled}
           onChange={e => {
             dispatch({
               type: SAVE_TODO,
-              payload: { name, description: e.target.value, fixed, index, id },
+              payload: {
+                name,
+                description: e.target.value,
+                fixed,
+                index,
+                id,
+                complete,
+              },
             })
           }}
         />
+        <hr />
+        <label
+          className={disabled && fixed ? "todo--fixed" : ""}
+          htmlFor={`${id}-complete`}
+        >
+          Date it needs to be fixed by
+        </label>
         <input
-          className='todo__fixed'
-          type='checkbox'
+          className={`todo__input todo__date ${
+            disabled && fixed ? "todo--fixed" : ""
+          }`}
+          type='date'
           checked={fixed}
-          id={id}
-          name={id}
-          onClick={e => {
+          value={formatDate(complete)}
+          id={`${id}-complete`}
+          name={`${id}-complete`}
+          disabled={disabled}
+          onChange={e => {
             dispatch({
               type: SAVE_TODO,
-              payload: { name, description, fixed: !fixed, index, id },
+              payload: {
+                name,
+                description,
+                fixed,
+                complete: new Date(e.target.value),
+                index,
+                id,
+              },
             })
           }}
         />
-        <label htmlFor={id}>Is it fixed?</label>
+        <hr />
+        <label htmlFor={`${id}-complete`}>Date it got fixed</label>
+        <input
+          className={`todo__input todo__date ${
+            disabled && fixed ? "todo--fixed" : ""
+          }`}
+          type='date'
+          value={formatDate(fixed)}
+          id={`${id}-complete`}
+          name={`${id}-complete`}
+          onChange={e => {
+            dispatch({
+              type: SAVE_TODO,
+              payload: {
+                name,
+                description,
+                fixed: new Date(e.target.value),
+                complete,
+                index,
+                id,
+              },
+            })
+          }}
+        />
       </form>
     </section>
   )
+}
+
+// formats the date to YYYY-MM-DD for date inputs
+const formatDate = date => {
+  if (date) {
+    const offset = date.getTimezoneOffset()
+    date = new Date(date.getTime() + offset * 60 * 1000)
+    return date.toISOString().split("T")[0]
+  }
+  return ""
 }
 
 export default Todo

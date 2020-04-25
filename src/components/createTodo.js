@@ -5,12 +5,13 @@ import { ADD_TODO } from "./todoList"
 function CreateTodo({ dispatch }) {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
+  const [complete, setComplete] = useState("")
 
   function handleSubmit(event) {
     event.preventDefault()
     dispatch({
       type: ADD_TODO,
-      payload: { name, description, fixed: false, id: Date.now() },
+      payload: { name, description, fixed: false, id: Date.now(), complete },
     })
     setName("")
     setDescription("")
@@ -29,10 +30,18 @@ function CreateTodo({ dispatch }) {
           onChange={e => setName(e.target.value)}
         />
         <textarea
-          className='todo__description'
+          className='todo__input'
           value={description}
           placeholder='how is it broken?'
           onChange={e => setDescription(e.target.value)}
+        />
+        <label>Date it needs to be fixed by</label>
+        <input
+          className='todo__input todo__date'
+          type='date'
+          id='create-complete'
+          name='create-complete'
+          onChange={e => setComplete(new Date(e.target.value))}
         />
       </form>
     </section>

@@ -18,9 +18,10 @@
   color: black;
 }
 
-.todo__description {
+.todo__input {
   font-size: 1em;
   width: 100%;
+  margin-bottom: 8px;
 }
 
 .todo__name {
@@ -32,7 +33,7 @@
 }
 
 .todo__name,
-.todo__description {
+.todo__input {
   background: none;
   border: none;
   box-sizing: border-box;
@@ -44,18 +45,21 @@
 }
 
 .todo--active .todo__name,
-.todo--active .todo__description {
+.todo--active .todo__input {
   background: white;
 }
 
 .todo__name:focus,
-.todo__description:focus {
+.todo__input:focus {
   background-color: white;
   outline: 3px black solid;
 }
 
 .todo label {
+  margin-top: 1em;
   margin-left: 8px;
+  font-family: dosis;
+  font-weight: 600;
 }
 
 .todo button {
@@ -95,6 +99,10 @@
   outline: none;
 }
 
+.todo__fixed {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
 .todo__fixed:focus {
   outline: 3px solid black;
 }
@@ -103,10 +111,22 @@
   text-decoration: line-through;
 }
 
+.todo hr {
+  border: 1px green solid;
+}
+
+.todo--active hr {
+  border: 1px red solid;
+}
+
+.todo__date {
+  margin-top: 8px;
+}
+
 /* Landscape phones */
 @media (min-width: 576px) {
   .todo__name,
-  .todo__description {
+  .todo__input {
     width: 80%;
   }
 

@@ -4,7 +4,7 @@ import Dexie from "dexie"
 let db
 if (window.indexedDB) {
   db = new Dexie("todos")
-  db.version(1).stores({ todos: "id,name,description,fixed" })
+  db.version(1).stores({ todos: "id,name,description,complete,fixed" })
 } else db = null
 
 export default db
