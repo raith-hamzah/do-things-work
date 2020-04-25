@@ -1,0 +1,37 @@
+.header {
+  background-image: linear-gradient(
+    to left,
+    rgba(119, 173, 230, 1) 0%,
+    #3f2da5 100%
+  );
+  box-sizing: border-box;
+  color: white;
+  width: 100%;
+}
+
+.header .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__brand {
+  font-family: Dosis, sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.header__text {
+  vertical-align: middle;
+  line-height: 48px;
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -1,0 +1,116 @@
+.todo {
+  position: relative;
+  box-sizing: border-box;
+  background-image: linear-gradient(135deg, #f3ff6a, #affbc4);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: grab;
+  margin: 8px 0;
+}
+
+.todo--active {
+  background-image: linear-gradient(135deg, #ffa9a9, #ffd983);
+  color: black;
+}
+
+.todo--creator {
+  background-image: linear-gradient(135deg, #a291ff, #ffdcc9);
+  color: black;
+}
+
+.todo__description {
+  font-size: 1em;
+  width: 100%;
+}
+
+.todo__name {
+  width: 70%;
+  margin-bottom: 8px;
+  font-size: 1.6em;
+  font-weight: bold;
+  font-family: dosis;
+}
+
+.todo__name,
+.todo__description {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  max-width: 600px;
+  padding: 8px;
+  resize: none;
+  border-radius: 3px;
+}
+
+.todo--active .todo__name,
+.todo--active .todo__description {
+  background: white;
+}
+
+.todo__name:focus,
+.todo__description:focus {
+  background-color: white;
+  outline: 3px black solid;
+}
+
+.todo label {
+  margin-left: 8px;
+}
+
+.todo button {
+  font-family: dosis;
+  font-weight: 900;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  position: absolute;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.todo__edit {
+  top: 16px;
+  right: 16px;
+}
+
+.todo__edit:focus,
+.todo__edit:hover {
+  background: black;
+  border-radius: 0;
+  color: white;
+  font-weight: bold;
+  outline: none;
+}
+
+.todo__delete {
+  bottom: 16px;
+  right: 16px;
+}
+
+.todo__delete:focus,
+.todo__delete:hover {
+  border-radius: 0;
+  color: white;
+  background: #811000;
+  outline: none;
+}
+
+.todo__fixed:focus {
+  outline: 3px solid black;
+}
+
+.todo--fixed {
+  text-decoration: line-through;
+}
+
+/* Landscape phones */
+@media (min-width: 576px) {
+  .todo__name,
+  .todo__description {
+    width: 80%;
+  }
+
+  .todo__name {
+    font-size: 2em;
+  }
+}

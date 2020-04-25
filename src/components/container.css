@@ -1,0 +1,25 @@
+/* Portrait phones (default in mobile-first approach) */
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+}
+/* Landscape phones */
+@media (min-width: 576px) {
+  .container {
+    max-width: 544px;
+    margin: auto;
+  }
+}
+/* Tablets */
+@media (min-width: 768px) {
+  .container {
+    max-width: 736px;
+  }
+}
+/* Desktops */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
